@@ -1,0 +1,22 @@
+{
+  "name": "phonebook-apollo",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "overrides": {
+    "@graphql-tools/utils": "12.1.0"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.2",
+    "graphql": "^16.15.0",
+    "uuid": "^14.0.3"
+  }
+}
