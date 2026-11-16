@@ -90,10 +90,10 @@ const resolvers = {
       })
     },
     login: async (root, args) => {
-      const user = await User.findone({ username: args.username })
+      const user = await User.findOne({ username: args.username })
 
       if (!user || args.password !== 'secret') {
-        throw new GraphQLError(`Creating the user failed: ${error.message}`, {
+        throw new GraphQLError(`Login failed: ${error.message}`, {
           extensions: {
             code: 'BAD_USER_INPUT',
             invalidArgs: args.name,
