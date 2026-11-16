@@ -45,7 +45,7 @@ const resolvers = {
       const person = new Person({ ...args })
       try {
         await person.save()
-        currentUser.firends = currentUser.friends.concat(person)
+        currentUser.friends = currentUser.friends.concat(person)
         await currentUser.save()
       } catch (error) {
         throw new GraphQLError(`Saving person failed: ${error.message}`, {

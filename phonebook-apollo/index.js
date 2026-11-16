@@ -10,5 +10,3 @@ const main = async () => {
   await connectToDatabase(MONGODB_URI)
   startServer(PORT)
 }
-
-startServer(PORT)
