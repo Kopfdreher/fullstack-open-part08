@@ -6,11 +6,17 @@ const resolvers = {
   Query: {
     bookCount: async () => Book.collection.countDocuments(),
     authorCount: async () => Author.collection.countDocuments(),
-    allBooks: async () => Book.find({}),
+    allBooks: async (root, args) => {
+      if (!args.genre) return Book.find({})
+      return Book.find({ genres: args.genre })
+    },
     allAuthors: async () => Author.find({}),
   },
   Author: {
-    bookCount: async ({ name }) => Book.find({ author: name })
+    bookCount: async ({ name }) => Book.find({ author: name }),
+  },
+  Book: {
+    author: async (book) => Author.findById(book.author),
   },
   Mutation: {
     addBook: async (root, args) => {
@@ -33,7 +39,13 @@ const resolvers = {
       await book.save()
       return book
     },
-    editAuthor: () => null,
+    editAuthor: async (root, args) => {
+      const author = await Author.findOne({ name: args.name })
+      if (!author) return null
+      author.born = args.setBornTo
+      await author.save()
+      return author
+    },
   },
 }
 
