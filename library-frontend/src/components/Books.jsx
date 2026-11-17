@@ -1,8 +1,10 @@
 import { useQuery } from '@apollo/client/react'
 import { ALL_BOOKS } from '../queries'
+import { useState, useEffect } from 'react'
 
 const Books = (props) => {
   const result = useQuery(ALL_BOOKS)
+  const [genres, setGenres] = useState([])
 
   if (!props.show) return null
   if (result.loading) return <div>loading...</div>
