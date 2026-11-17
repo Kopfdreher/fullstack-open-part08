@@ -8,6 +8,7 @@ const Books = (props) => {
   const [selectedGenre, setSelectedGenre] = useState(null)
   const result = useQuery(ALL_BOOKS, {
     variables: { genre: selectedGenre },
+    fetchPolicy: 'network-only',
   })
 
   if (!props.show) return null

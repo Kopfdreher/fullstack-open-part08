@@ -8,6 +8,7 @@ const Recommend = (props) => {
   const result = useQuery(ALL_BOOKS, {
     variables: { genre: selectedGenre },
     skip: !selectedGenre,
+    fetchPolicy: 'network-only',
   })
 
   if (!props.show) return null
