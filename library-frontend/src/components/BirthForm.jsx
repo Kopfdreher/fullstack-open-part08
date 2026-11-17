@@ -1,13 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMutation } from '@apollo/client/react'
 import { EDIT_BORN, ALL_AUTHORS } from '../queries'
 
 const BirthForm = ({ authors }) => {
-  const [name, setName] = useState('')
+  const [name, setName] = useState(authors[0]?.name ?? '')
   const [born, setBorn] = useState('')
   const [ changeYear ] = useMutation(EDIT_BORN, {
     refetchQueries: [{ query: ALL_AUTHORS }],
   })
+
+  useEffect(() => {
+    if (!name && authors[0]?.name) {
+      setName(authors[0].name)
+    }
+  }, [authors, name])
 
   const submit = (e) => {
     e.preventDefault()

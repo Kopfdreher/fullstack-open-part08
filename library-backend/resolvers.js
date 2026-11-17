@@ -16,7 +16,7 @@ const resolvers = {
     me: (root, args, { currentUser }) => currentUser,
   },
   Author: {
-    bookCount: async ({ name }) => Book.find({ author: name }),
+    bookCount: async (author) => Book.countDocuments({ author: author._id }),
   },
   Book: {
     author: async (book) => Author.findById(book.author),
