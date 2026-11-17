@@ -13,10 +13,14 @@ const PhoneForm = ({ setError }) => {
     }
   })
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
 
-    changeNumber({ variables: { name, phone } })
+    try {
+      await changeNumber({ variables: { name, phone } })
+    } catch (error) {
+      setError(error.message)
+    }
 
     setName('')
     setPhone('')

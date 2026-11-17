@@ -21,3 +21,5 @@ const schema = new mongoose.Schema({
     minlength: 3
   },
 })
+
+module.exports = mongoose.model('Person', schema)
