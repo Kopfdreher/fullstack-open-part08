@@ -4,6 +4,7 @@ import Authors from './components/Authors'
 import Books from './components/Books'
 import NewBook from './components/NewBook'
 import LoginForm from './components/LoginForm'
+import Recommend from './components/Recommend'
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('library-user-token'))
@@ -23,11 +24,13 @@ const App = () => {
         <button onClick={() => setPage('books')}>books</button>
         {!token && <button onClick={() => setPage('login')}>login</button>}
         {token && <button onClick={() => setPage('add')}>add book</button>}
+        {token && <button onClick={() => setPage('recommend')}>recommend</button>}
         {token && <button onClick={onLogout}>logout</button>}
       </div>
 
       <Authors show={page === 'authors'} token={token} />
       <Books show={page === 'books'} />
+      <Recommend show={page === 'recommend'} />
       <NewBook show={page === 'add'} />
       <LoginForm show={page === 'login'} setToken={setToken} />
     </div>
