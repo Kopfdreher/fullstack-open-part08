@@ -8,14 +8,15 @@ const Books = (props) => {
   const [selectedGenre, setSelectedGenre] = useState(null)
   const result = useQuery(ALL_BOOKS, {
     variables: { genre: selectedGenre },
+    skip: !selectedGenre,
     fetchPolicy: 'network-only',
   })
 
   if (!props.show) return null
-  if (all.loading || result.loading) return <div>loading...</div>
+  if (all.loading || (selectedGenre && result.loading)) return <div>loading...</div>
   const allBooks = all.data?.allBooks ?? []
   const genres = [...new Set(allBooks.flatMap(b => b.genres))]
-  const books = result.data?.allBooks ?? []
+  const books = selectedGenre ? (result.data?.allBooks ?? []) : allBooks
 
   return (
     <div>

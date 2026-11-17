@@ -14,6 +14,7 @@ const start = async () => {
       ...process.env,
       NODE_ENV: 'test',
       MONGODB_URI: uri,
+      TEST_MONGODB_URI: uri,
       JWT_SECRET: 'test-secret-key',
       PORT: '4000',
     },

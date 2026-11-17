@@ -7,7 +7,7 @@ const Authors = (props) => {
 
   if (!props.show) return null
   if (result.loading) return <div>loading...</div>
-  const authors = result.data.allAuthors ?? []
+  const authors = result.data?.allAuthors ?? []
 
   return (
     <div>

@@ -4,7 +4,7 @@ import BooksList from './BooksList'
 
 const Recommend = (props) => {
   const user = useQuery(ME)
-  const selectedGenre = user.data?.me.favoriteGenre
+  const selectedGenre = user.data?.me?.favoriteGenre
   const result = useQuery(ALL_BOOKS, {
     variables: { genre: selectedGenre },
     skip: !selectedGenre,
@@ -13,7 +13,7 @@ const Recommend = (props) => {
 
   if (!props.show) return null
   if (result.loading || user.loading) return <div>loading...</div>
-  const books = result.data.allBooks ?? []
+  const books = result.data?.allBooks ?? []
 
   return (
     <div>
