@@ -1,18 +1,27 @@
 import { useQuery } from '@apollo/client/react'
 import { ALL_BOOKS } from '../queries'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const Books = (props) => {
   const result = useQuery(ALL_BOOKS)
-  const [genres, setGenres] = useState([])
+  const [selectedGenre, setSelectedGenre] = useState(null)
 
   if (!props.show) return null
   if (result.loading) return <div>loading...</div>
   const books = result.data.allBooks ?? []
+  const genres = [...new Set(books.flatMap(b => b.genres))]
+
+  const filteredBooks = selectedGenre
+    ? books.filter(b => b.genres.includes(selectedGenre))
+    : books
 
   return (
     <div>
       <h2>books</h2>
+
+      { selectedGenre && (
+        <p>in genre <strong>{selectedGenre}</strong></p>
+      )}
 
       <table>
         <tbody>
@@ -21,7 +30,7 @@ const Books = (props) => {
             <th>author</th>
             <th>published</th>
           </tr>
-          {books.map((b) => (
+          {filteredBooks.map((b) => (
             <tr key={b.id}>
               <td>{b.title}</td>
               <td>{b.author.name}</td>
@@ -30,6 +39,12 @@ const Books = (props) => {
           ))}
         </tbody>
       </table>
+      <div>
+        {genres.map((g) => (
+          <button key={g} onClick={() => setSelectedGenre(g)}>{g}</button>
+        ))}
+        <button onClick={() => setSelectedGenre(null)}>all genres</button>
+      </div>
     </div>
   )
 }
