@@ -2,7 +2,7 @@
 
 Solutions for [Full Stack Open, part 8: GraphQL](https://fullstackopen.com/en/part8).
 
-Parts 0–5: [fullstack-open-part00-05](https://github.com/Kopfdreher/fullstack-open-part00-05). Part 6: [fullstack-open-part06](https://github.com/Kopfdreher/fullstack-open-part06). Part 7: [fullstack-open-part07](https://github.com/Kopfdreher/fullstack-open-part07).
+Parts 0–5: [fullstack-open-part00-05](https://github.com/Kopfdreher/fullstack-open-part00-05).
 
 A library API with [Apollo Server](https://www.apollographql.com/docs/apollo-server) and a React client. Queries and mutations are tested with Node; the UI with Playwright.
 
