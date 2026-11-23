@@ -18,4 +18,6 @@ A library API with [Apollo Server](https://www.apollographql.com/docs/apollo-ser
 - API tests: `cd tests-chapter4 && npm install && npm test` (in-memory MongoDB)
 - UI tests: `cd tests-chapter5 && npm install && npx playwright install chromium && npm test` (Playwright starts both apps)
 
-Workflows under `.github/workflows/` run on `workflow_dispatch`.
+## Certificate
+
+![Part 8 certificate](certificate-part08.png)
